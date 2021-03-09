@@ -1,0 +1,19 @@
+{% extends "base.html" %} 
+{% load static %}
+ {% block title %}Категории товаров {% endblock %} 
+{% block content %}
+<div class="plp_all flex-container">
+    {% for category in object_list %}   
+        <div class="plp__item">
+            <a href="{% url 'product_list_by_category' category.slug %}">
+                <div class=" plp__items__images">
+                    <img class="card-img-top" src="{{ category.image.url}}" alt="" >
+                </div>
+                <div class="card-body">
+                    <h3 class=" card-title plp__name">{{ category.name }}</h3>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

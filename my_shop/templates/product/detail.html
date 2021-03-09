@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+ {% load static %}
+{% block title %} {% if category %} {{ category.title }} {% else %} Products {% endif %}
+ {% endblock %} 
+{% block content %}
+
+<div class="pdp__media">
+  <div class="small_img">
+    <ul class="indicator">
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active left_pict">
+  <img src="{{ product.image.url}}">
+    </li>
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="active left_pict"><img src="{{ product.image.url}}"></li>
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="active left_pict"><img src="{{ product.image.url}}"></li>
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" class="active left_pict"><img src="{{ product.image.url}}"></li>
+    </ul>
+  </div>
+  <div id="carouselExampleIndicators" data-interval="false" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      {% if product.image %}
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="{{ product.image.url}}" alt="">
+      </div>
+      {% endif %}
+      {% if product.back_image %} <div class="carousel-item">
+        <img
+          class="d-block w-100"
+          src="{{ product.back_image.url}}"
+          alt="Второй слайд"
+        >
+      </div> 
+      {% endif %}
+      {% if product.third_image %}
+      <div class="carousel-item">
+        <img
+          class="d-block w-100"
+          src="{{ product.third_image.url}}"
+          alt="Третий слайд"
+        >
+      </div>
+      {% endif %}
+      {% if product.forth_image %}
+      <div class="carousel-item">
+        <img
+          class="d-block w-100"
+          src="{{ product.forth_image.url}}"
+          alt="Четвертый слайд"
+        >
+      </div>
+      {% endif %}
+    </div>
+    <a
+      class="carousel-control-prev"
+      href="#carouselExampleControls"
+      role="button"
+      data-slide="prev"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="darkgrey" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+    </svg>
+    </a>
+    <a
+      class="carousel-control-next"
+      href="#carouselExampleControls"
+      role="button"
+      data-slide="next"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="darkgrey" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+      </svg>
+    </a>
+  </div>
+  <div class="pdp__info">
+    <div class="pdp__info_header">
+      <h1>
+        {{ product.product_name }}
+      </h1>
+      <div class="price">
+        {{product.price}} р.
+      </div>
+
+
+
+    </div>
+    <div class="pdp__info__section">
+      <div class="pdp__info__description">
+        <p style="text-align: right;" class="red"> {% if product.price_with_sale %} Цена со скидкой: {{product.price_with_sale}} {% endif %}
+        </p>
+        <p> </p>
+        <p>{{ product.discription }}</p>
+        <p>{% if product.composition %} {{product.composition|safe }} {%endif%} </p>
+        <table style="margin-left: auto; margin-right: auto;" height="29" width="389" data-mce-style="margin-left: auto; margin-right: auto;">
+          <tbody>
+          <tr>
+          <td style="width: 381px; text-align: center;" data-mce-style="width: 381px; text-align: center;">
+          <h6><span style="color: #cccccc;">(cm)</span></h6>
+          </td>
+          <td style="width: 381px; text-align: center;" data-mce-style="width: 381px; text-align: center;">
+          <h6><span style="color: #cccccc;">Length</span></h6>
+          </td>
+          <td style="width: 381px; text-align: center;" data-mce-style="width: 381px; text-align: center;">
+          <h6><span style="color: #cccccc;">Shoulder width</span></h6>
+          </td>
+          <td style="width: 381px; text-align: center;" data-mce-style="width: 381px; text-align: center;">
+          <h6><span style="color: #cccccc;">Chest width</span></h6>
+          </td>
+          <td style="width: 381px; text-align: center;" data-mce-style="width: 381px; text-align: center;">
+          <h6><span style="color: #cccccc;">Hip Width</span></h6>
+          </td>
+          <td style="width: 381px; text-align: center;" data-mce-style="width: 381px; text-align: center;">
+          <h6><span style="color: #cccccc;">Sleeve length</span></h6>
+          </td>
+          </tr>
+          <tr style="text-align: center;" data-mce-style="text-align: center;">
+          <td style="width: 381px;" data-mce-style="width: 381px;">
+          <h6><span style="color: #cccccc;">US4</span></h6>
+          </td>
+          <td style="width: 381px;" data-mce-style="width: 381px;">
+          <h6><span style="color: #cccccc;">126</span></h6>
+          </td>
+          <td style="width: 381px;" data-mce-style="width: 381px;">
+          <h6><span style="color: #cccccc;">41</span></h6>
+          </td>
+          <td style="width: 381px;" data-mce-style="width: 381px;">
+          <h6><span style="color: #cccccc;">49</span></h6>
+          </td>
+          <td style="width: 381px;" data-mce-style="width: 381px;">
+          <h6><span style="color: #cccccc;">51</span></h6>
+          </td>
+          <td style="width: 381px;" data-mce-style="width: 381px;">
+          <h6><span style="color: #cccccc;">67</span></h6>
+          </td>
+          </tr>
+          <tr style="text-align: center;" data-mce-style="text-align: center;">
+          <td style="width: 381px;" data-mce-style="width: 381px;">
+          <h6><span style="color: #cccccc;">US6</span></h6>
+          </td>
+          <td style="width: 381px;" data-mce-style="width: 381px;">
+          <h6><span style="color: #cccccc;">127&nbsp;</span></h6>
+          </td>
+          <td style="width: 381px;" data-mce-style="width: 381px;">
+          <h6><span style="color: #cccccc;">42</span></h6>
+          </td>
+          <td style="width: 381px;" data-mce-style="width: 381px;">
+          <h6><span style="color: #cccccc;">51</span></h6>
+          </td>
+          <td style="width: 381px;" data-mce-style="width: 381px;">
+          <h6><span style="color: #cccccc;">53</span></h6>
+          </td>
+          <td style="width: 381px;" data-mce-style="width: 381px;">
+          <h6><span style="color: #cccccc;">69</span></h6>
+          </td>
+          </tr>
+          </tbody>
+          </table>
+       
+
+      </div>
+      <div class="pdp__info__composition">
+        {% if product.composition%}
+        {{product.composition}}
+        {% endif %}
+
+        
+
+      </div>
+      <form action="{% url 'cart_add' product_id=product.id %}" method="post">
+        {{ cart_product_form }} {% csrf_token %}
+          {% for size in product.sizes.all %}
+          <div class="form_radio_btn">
+            <input id="{{size}}" type="radio" name="size" value="{{size}}">
+            <label for="{{size}}">{{size}}</label>
+          </div>
+        {% endfor %}
+        <button type="submit">
+          <span class="glyphicon glyphicon-shopping-cart">Добавить в корзину </span>
+        </button>
+      </form>
+
+
+    </div>
+
+
+
+    <!-- <div class="caption">
+      <div class="row">
+        <div class="col-md-6 col-xs-6">
+          <h3>{{ product.id }}</h3>
+          <h3>{{ product.product_name }}</h3>
+        </div>
+        <div class="col-md-6 col-xs-6 price">
+          <h3>
+            <label>{{ product.price }}</label>
+          </h3>
+          <p>{{product.slug }}</p>
+        </div>
+      </div>
+      <p>{{ product.description }}</p>
+      <form action="{% url 'cart_add' product_id=product.id %}" method="post">
+        {{ cart_product_form }} {% csrf_token %}
+
+        <button type="submit">
+          <span class="glyphicon glyphicon-shopping-cart">Добавить в корзину</span>
+        </button>
+      </form>
+
+      <p></p>
+    </div> -->
+  </div>
+</div>
+
+{% endblock %}

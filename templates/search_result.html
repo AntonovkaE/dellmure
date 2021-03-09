@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<h1>
+    Найден {{ object_list.count }} товар</h1>
+<div class="plp_all flex-container">
+  <div class="mb-3">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+    </svg>
+  <form action="{% url 'search_results' %}" method="GET">
+    <input name="search" class="form-control" type="text" id="exampleFormControlInput1" placeholder="Поиск...">
+  </form>  
+  <p> </p>
+
+  <p class="light">Нужна помощь?</p>
+  <p class="light">For further information please contact our customer care team at +82 (2) 517 5732 or hello@moonchoistudio.com
+  </p>
+</div>
+<div class="plp_all flex-container">
+  {% for product in object_list %}
+  <div class="plp__item">
+  <a href="{% url 'product_detail' product_id=product.id %}">
+    <div class=" plp__items__images">
+      <img class="card-img-top" src="{{ product.image.url}}" alt="" />
+      <img src="{{ product.back_image.url}}" alt="" />
+      <i
+        class="plp__item__prompt js-plpPrompt"
+        style="left: 369px; top: 562px"
+      ></i>
+    </div>
+    <div class="card-body">
+      <h3 class=" card-title plp__name">{{ product.product_name }}</h3>
+      {% if price_with_sale %}
+      <div class="plp__price js-price">{{ product.price_with_sale }} р.</div>
+      {% else %}
+      <div class="plp__price js-price">{{ product.price }} р.</div>
+      {% endif %}
+    </div>
+  </a>
+
+  <ul class="plp__item__sizes">
+    <li>
+      <button class="size" data-id="#"><u>{{item}}</u></button>
+    </li>
+  </li>
+  </ul>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

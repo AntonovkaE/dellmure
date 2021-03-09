@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Your shopping cart
+{% endblock %}
+
+{% block content %}
+    <h1>Your shopping cart</h1>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Фото</th>
+                    <th>Товар</th>
+                    <th>Количество</th>
+                    <th>Размер</th>
+                    <th></th>
+                    <th class="text-center">Цена</th>
+                    <th class="text-center">Общая стоимость</th>
+                    <th> </th>
+                </tr>
+
+                </thead>
+                <tbody>
+                {% for item in cart %}
+                    {% with product=item.product %}
+                        <tr>
+                            <td class="col-sm-8 col-md-6">
+                                <div class="media">
+                                    <a class="thumbnail pull-left" href="#">
+                                        <img class="media-object"
+                                             src="{% if product.image %}{{ product.image.url }}
+                                                  {% else %}{% static "img/no_image.png" %}{% endif %}"
+                                             style="width: 72px; height: 72px;">
+                                    </a>
+                            </td>
+                            <td class="col-sm-8 col-md-6">
+                                    <div class="media-body">
+                                        <h4 class="media-heading">
+                                            <a href="#">{{ product.product_name }}</a></h4>
+                            </td>
+                            <td class="col-sm-8 col-md-6">
+                                            <a style="text-align: center;" href="#">{{ item.quantity }}</a>
+                            </td>
+                            <td class="col-sm-8 col-md-6">
+                                <a style="text-align: center;" href="#">{{ item.size }}</a>
+                </td>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="col-sm-1 col-md-1" style="text-align: center">
+                                <form action="{% url "cart_add" product.id %}" method="post">
+                                    {% csrf_token %}
+
+                                </form>
+                            </td>
+
+                            <td class="col-sm-1 col-md-1 text-center"><strong>{{ item.price }} р.</strong></td>
+                            <td class="col-sm-1 col-md-1 text-center"><strong>{{ item.total_price }} р.</strong></td>
+
+                            <td class="col-sm-1 col-md-1">
+                                <a href="{% url "cart_remove" product.id %}" class="btn btn-danger">
+                                    <i class="glyphicon glyphicon-remove" aria-hidden="true"></i> Удалить
+                                </a>
+                            </td>
+                        </tr>
+                    {% endwith %}
+                {% endfor %}
+                <tr>
+                    <td>  </td>
+                    <td>  </td>
+                    <td>  </td>
+                    <td><h3>Total</h3></td>
+                    <td class="text-right"><h3><strong>{{ cart.get_total_price }}р.</strong></h3></td>
+                </tr>
+                <tr>
+                    <td>  </td>
+                    <td>  </td>
+                    <td>  </td>
+                    <td>
+
+                    </td>
+                    <td>
+                        <a href="{% url "home" %}" class="button light">Продолжить покупки</a>
+                        <a href="{% url 'order_create' %}"class="btn btn-default">Оформить
+                            <i class="glyphicon glyphicon-play" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

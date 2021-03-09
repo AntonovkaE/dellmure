@@ -1,0 +1,62 @@
+{% extends "base.html" %} 
+{% load static %}
+ {% block title %}Каталог товаров {% endblock %} 
+{% block content %}
+
+
+
+
+<form action="{% url 'home' %}" method="get" id="sortProduct">
+
+  <div class="box sort pull-right">
+    <span>Сортировка:</span>
+    <button value="Сортировка" class="dropdown-toggle" type="submit" data-toggle="dropdown" id="menu2">
+     <span class="dropdown-label">По умолчанию</span>
+    </button>
+   <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
+      <li><input type="submit" name="orderby" value="created"></li>
+      <li><input type="submit" name="orderby" value="-created"></li>
+      <li><input type="submit" name="orderby" value="price"></li>
+      <li><input type="submit" name="orderby" value="-price"></li>
+   </ul>
+  </div>
+</form>
+{% for category in categories %}
+<p> {{category.name }} </p>
+{% endfor %}
+
+<div class="plp_all flex-container">
+  {% for product in object_list %}
+  <div class="plp__item">
+  <a href="{% url 'product_detail' product_id=product.id %}">
+    <div class=" plp__items__images">
+      <img class="card-img-top" src="{{ product.image.url}}" alt="" />
+      <img src="{{ product.back_image.url}}" alt="" />
+      <i
+        class="plp__item__prompt js-plpPrompt"
+        style="left: 369px; top: 562px"
+      ></i>
+    </div>
+    <div class="card-body">
+      <h3 class=" card-title plp__name">{{ product.product_name }}</h3>
+      {% if price_with_sale %}
+      <div class="plp__price js-price">{{ product.price_with_sale }} р.</div>
+      {% else %}
+      <div class="plp__price js-price">{{ product.price }} р.</div>
+      {% endif %}
+    </div>
+  </a>
+
+  <ul class="plp__item__sizes">
+    <li>
+      <button class="size" data-id="#"><u>{{item}}</u></button>
+    </li>
+  </li>
+  </ul>
+  </div>
+  {% endfor %}
+</div>
+
+
+
+{% endblock %}

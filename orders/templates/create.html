@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Оформление заказа{% endblock %}
+
+{% block content %}
+<div class="order_header">
+
+    <h1>Оформление заказа</h1>
+    <div class="order-info">
+        <!-- <h3>Ваш заказ</h3>
+        <ul>
+        {% for item in cart %}
+                <li>
+                    {{ item.quantity }} x {{ item.product.product_name }}
+                </li>
+            {% endfor %} -->
+        <!-- </ul> --> 
+        <p>Заказ на сумму: {{ cart.get_total_price }}р.</p>
+</div>
+    </div>
+    <div class="order_form">
+    <form action="." method="post" class="order-form">
+        <div class="form-group">
+        {% for field in form %}
+        <div class="form-group">
+            <p></p>
+            <div>{{field}}</div>
+        {% endfor%}
+    </div>
+    <p></p>
+        <p><input class="black_button" type="submit" value="Заказать"/></p>
+        {% csrf_token %}
+    </form>
+    </div>
+{% endblock %}

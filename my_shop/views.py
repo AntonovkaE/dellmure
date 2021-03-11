@@ -48,10 +48,13 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product,
                                 id=product_id,)
     cart_product_form = CartAddProductForm()
+    sizes_for_product = Size.objects.filter(clothe=product_id)
     return render(request,
                   'product/detail.html',
                   {'product': product,
-                   'cart_product_form': cart_product_form})
+                   'cart_product_form': cart_product_form,
+                   'sizes_for_product': sizes_for_product,
+                   })
 
 
 class SearchResultView(ListView):

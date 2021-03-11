@@ -17,23 +17,6 @@ class Category(models.Model):
         return self.name
 
 
-class Size(models.Model):
-    SIZES = (
-        ('xs', 'extra small'),
-        ('s', 'small'),
-        ('m', 'medium'),
-        ('l', 'large'),
-        ('xl', 'extra large'),
-        ('o', 'one size')
-    )
-    size = models.CharField(max_length=2, choices=SIZES, blank=True)
-    class Meta:
-        verbose_name = 'Размер'
-        verbose_name_plural = 'Размеры'
-    def __str__(self):
-        return self.size
-
-
 
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE, null=True, blank=True, )
@@ -52,8 +35,6 @@ class Product(models.Model):
     third_image = models.ImageField(upload_to='images/', blank=True)
     forth_image = models.ImageField(upload_to='images/', blank=True)
     created = models.DateTimeField(auto_now_add=True, null=True)
-    size = models.TextField(max_length=255, null=True, blank=True)
-    sizes = models.ManyToManyField(Size, null=True, blank=True)
     color = models.TextField(max_length=255, null=True, blank=True)
 
     class Meta:
@@ -68,4 +49,15 @@ class Product(models.Model):
     # def get_absolute_url(self):
     #     from django.urls import reverse
     #     return reverse('my_shop.views.product_detail', args=[self.id, self.slug])
+
+class Size(models.Model):
+    size = models.CharField(max_length=15, blank=True)
+    clothe = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True, )
+    index_size = models.IntegerField(blank=True, null=True)
+    class Meta:
+        verbose_name = 'Товар с размером'
+        verbose_name_plural = 'Товар с размером'
+    def __str__(self):
+        return self.size
+
 

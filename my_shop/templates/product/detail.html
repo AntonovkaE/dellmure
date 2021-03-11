@@ -51,7 +51,7 @@
     </div>
     <a
       class="carousel-control-prev"
-      href="#carouselExampleControls"
+      href="#carouselExampleIndicators"
       role="button"
       data-slide="prev"
     >
@@ -61,7 +61,7 @@
     </a>
     <a
       class="carousel-control-next"
-      href="#carouselExampleControls"
+      href="#carouselExampleIndicators"
       role="button"
       data-slide="next"
     >
@@ -72,19 +72,18 @@
   </div>
   <div class="pdp__info">
     <div class="pdp__info_header">
-      <h1>
+      <p>
         {{ product.product_name }}
-      </h1>
+      </p>
       <div class="price">
         {{product.price}} р.
       </div>
-
-
-
     </div>
     <div class="pdp__info__section">
       <div class="pdp__info__description">
-        <p style="text-align: right;" class="red"> {% if product.price_with_sale %} Цена со скидкой: {{product.price_with_sale}} {% endif %}
+        <p style="text-align: right; color: red;" class="red"> {% if product.price_with_sale %} Цена со скидкой: {{product.price_with_sale}} 
+        <p style="text-align: right; color: red;" class="red">
+        {% endif %}
         </p>
         <p> </p>
         <p>{{ product.discription }}</p>
@@ -166,7 +165,7 @@
       </div>
       <form action="{% url 'cart_add' product_id=product.id %}" method="post">
         {{ cart_product_form }} {% csrf_token %}
-          {% for size in product.sizes.all %}
+          {% for size in sizes_for_product %}
           <div class="form_radio_btn">
             <input id="{{size}}" type="radio" name="size" value="{{size}}">
             <label for="{{size}}">{{size}}</label>

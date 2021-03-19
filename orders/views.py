@@ -20,7 +20,6 @@ def order_create(request):
             cart.clear()
             order_created(order.id)
             request.session['order_id'] = order.id
-            # redirect to the payment
             return render(request, 'created.html', 
                          {'order': order})
 

@@ -1,5 +1,5 @@
 from django.db import models
-from my_shop.models import Product
+from my_shop.models import Product, Size 
 
 
 
@@ -27,10 +27,9 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='order_items')
+    product = models.ForeignKey(Size, on_delete=models.CASCADE, related_name='order_items')
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(default=1)
-    # size = models.TextField(max_length=300, blank=True)
 
     def __str__(self):
         return '{}'.format(self.id)

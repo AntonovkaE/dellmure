@@ -55,7 +55,7 @@
       role="button"
       data-slide="prev"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="darkgrey" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="BLACK" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
     </svg>
     </a>
@@ -65,7 +65,7 @@
       role="button"
       data-slide="next"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="darkgrey" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="black" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
       </svg>
     </a>
@@ -76,18 +76,24 @@
         {{ product.product_name }}
       </p>
       <div class="price">
-        {{product.price}} р.
+        {% if product.price_with_sale %} Цена: {{product.price_with_sale}} р.
       </div>
     </div>
     <div class="pdp__info__section">
       <div class="pdp__info__description">
-        <p style="text-align: right; color: red;" class="red"> {% if product.price_with_sale %} Цена со скидкой: {{product.price_with_sale}} 
-        <p style="text-align: right; color: red;" class="red">
+        <p style="text-align: right; color: red;" class="red">Первоначальная цена: {{product.price}} р.</p>
+        {% else %}
+        Цена: {{product.price}} р.
+      </div>
+    </div>
+    <div class="pdp__info__section">
+      <div class="pdp__info__description">
         {% endif %}
-        </p>
+
+
+        
         <p> </p>
         <p>{{ product.discription }}</p>
-        <p>{% if product.composition %} {{product.composition|safe }} {%endif%} </p>
         <table style="margin-left: auto; margin-right: auto;" height="29" width="389" data-mce-style="margin-left: auto; margin-right: auto;">
           <tbody>
           <tr>
@@ -152,8 +158,6 @@
           </tr>
           </tbody>
           </table>
-       
-
       </div>
       <div class="pdp__info__composition">
         {% if product.composition%}
@@ -163,48 +167,26 @@
         
 
       </div>
-      <form action="{% url 'cart_add' product_id=product.id %}" method="post">
-        {{ cart_product_form }} {% csrf_token %}
+      
+      
           {% for size in sizes_for_product %}
-          <div class="form_radio_btn">
-            <input id="{{size}}" type="radio" name="size" value="{{size}}">
+          <form action="{% url 'cart_add' size.id %}" method="post">
+          <div class="">
+            {{ cart_product_form }}
+            <input id="{{size}}" type="submit" name="size" value="{{size.id}}">
             <label for="{{size}}">{{size}}</label>
           </div>
+          {% csrf_token %}
+        </form>
         {% endfor %}
-        <button type="submit">
-          <span class="glyphicon glyphicon-shopping-cart">Добавить в корзину </span>
-        </button>
-      </form>
+      
 
 
     </div>
 
 
 
-    <!-- <div class="caption">
-      <div class="row">
-        <div class="col-md-6 col-xs-6">
-          <h3>{{ product.id }}</h3>
-          <h3>{{ product.product_name }}</h3>
-        </div>
-        <div class="col-md-6 col-xs-6 price">
-          <h3>
-            <label>{{ product.price }}</label>
-          </h3>
-          <p>{{product.slug }}</p>
-        </div>
-      </div>
-      <p>{{ product.description }}</p>
-      <form action="{% url 'cart_add' product_id=product.id %}" method="post">
-        {{ cart_product_form }} {% csrf_token %}
 
-        <button type="submit">
-          <span class="glyphicon glyphicon-shopping-cart">Добавить в корзину</span>
-        </button>
-      </form>
-
-      <p></p>
-    </div> -->
   </div>
 </div>
 

@@ -60,6 +60,7 @@ li {
 }
 .navbar {
     background-color: white;
+    z-index: 1;
 }
 .navbar-all {
     width: 100%;
@@ -67,7 +68,7 @@ li {
 
 .navbar-brand {
     position: absolute;
-    left: 50%;
+    left: 45%;
     top: 1rem;
 }
 
@@ -109,7 +110,7 @@ li {
     padding-left: 10px;
     padding-right: 10px;
     min-width: 320px;
-    max-width: 1700px;
+    max-width: 1900px;
     justify-content: space-between;}
 
 .strikethrough {
@@ -165,6 +166,11 @@ li {
 .plp__name {
 padding-top: 155%}
 
+.pdp__info__composition{
+    color: darkgray;
+}
+
+
 
 @media screen and (max-width: 1023px) {
     .plp__item__sizes {
@@ -188,6 +194,10 @@ padding-top: 155%}
 
 .small_img{
     display: none;
+}
+
+.pdp__info p, .pdp__info div {
+    padding-bottom: 5%;
 }}
 
 
@@ -202,6 +212,12 @@ padding-top: 155%}
 .pdp__info {
     justify-content: flex-end;
     box-sizing: border-box}
+
+.pdp__info p, .pdp__info div {
+        padding-bottom: 5%;
+
+    }
+
 .small_img, .pdp__info {
     width: 25%;
 }
@@ -215,7 +231,7 @@ padding-top: 155%}
     margin: auto;
 }
 .carousel-item img {
-    padding: 0 10%;
+    padding: 0 15%;
 }
 .plp__item__sizes button {
     background: none;
@@ -230,7 +246,7 @@ padding-top: 155%}
         border:none;
         width: 33%;}}
 .pdp__info_header {
-    margin: 6%;
+    padding-bottom: 5%;
     display: flex;
     width: 100%;
     justify-content: space-between;

@@ -1,0 +1,29 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block title %}
+  {% if category %}
+    {{ category.name }}
+  {% else %}Products
+ {% endif %}
+{% endblock %}
+{% block content %}
+
+  <div class="flex-container">
+    {% for item in collections%}
+    <a href="{% url 'lookbook' item.id %}">
+      <span>{{ item.name }} {{item.id}}</span></a>
+    {% endfor %}
+  </div>
+  <div class="flex-container">
+    {% for slide in slides %}
+    
+      <div class="slide">
+        <a href="{% url 'slide' collection.id  slide.pk %}"> 
+        <img src="{{slide.image.url}}" />
+      </a>
+      </div>
+
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

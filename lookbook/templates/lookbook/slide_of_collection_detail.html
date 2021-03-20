@@ -1,0 +1,16 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block title %}
+  {% if category %}
+    {{ category.name }}
+  {% else %}Products
+ {% endif %}
+{% endblock %}
+{% block content %}
+
+      <div class="slide_detail">
+        <img src="{{object.image.url}}" />
+        <p>{{ object.description }} </p>
+      </div>
+
+{% endblock %}

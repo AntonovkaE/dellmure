@@ -6,19 +6,20 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Your shopping cart</h1>
+    <h1>Корзина</h1>
 
     <div class="row">
-        <div class="col-sm-12 col-md-10 col-md-offset-1">
+        <!-- <div class="col-sm-12 col-md-10 col-md-offset-1"> -->
             <table class="table table-hover">
                 <thead>
                 <tr>
                     <th>Фото</th>
-                    <th>Товар</th>
-                    <th>Количество</th>
-                    <th>Размер</th>
+                    <th scope="col" class="text-center">Товар</th>
+                    <th scope="col" class="text-center">Количество</th>
+                    <th scope="col" class="text-center">Размер</th>
                     <th></th>
-                    <th class="text-center">Цена</th>
+                    <th scope="col" class="text-center">Цена</th>
+                    
                     <th class="text-center">Общая стоимость</th>
                     <th> </th>
                 </tr>
@@ -27,24 +28,23 @@
                 <tbody>
                 {% for item in cart %}
                         <tr>
-                            <td class="col-sm-8 col-md-6">
+                            <td class="col-sm-2 col-md-2">
                                 <div class="media">
                                     <a class="thumbnail pull-left" href="#">
-                                        <img class="media-object"
-                                             src="{% if item.product.clothe.image %} {{ item.product.clothe.image }}
-                                                  {% else %}{% static "img/no_image.png" %}{% endif %}"
-                                             style="width: 72px; height: 72px;">
+                                        <img 
+                                             src="{{ item.product.clothe.image.url }}""
+                                             style="width: 72px; height: auto;">
                                     </a>
                             </td>
-                            <td class="col-sm-8 col-md-6">
+                            <td class="col-sm-6 col-md-6 text-center">
                                     <div class="media-body">
                                         <h4 class="media-heading">
-                                            <a href="#"> {{item.product.clothe}}</a></h4>
+                                            <a href="{% url 'product_detail' item.product.clothe.id %}"> {{item.product.clothe}}</a></h4>
                             </td>
-                            <td class="col-sm-8 col-md-6">
-                                            <a style="text-align: center;" href="#">{{ item.quantity }}</a>
+                            <td class="col-sm-8 col-md-6 text-center">
+                                            <a  href="#">{{ item.quantity }}</a>
                             </td>
-                            <td class="col-sm-8 col-md-6">
+                            <td class="col-sm-8 col-md-6 text-center">
                                 <a style="text-align: center;" href="#">{{ item.product.size }}</a>
                 </td>
                                     </div>
@@ -57,12 +57,12 @@
                                 </form>
                             </td>
 
-                            <td class="col-sm-1 col-md-1 text-center"><strong>{{ item.price }} р.</strong></td>
+                            <td class="col-sm-8 col-md-6 text-center"><strong>{{ item.price }} р.</strong></td>
                             <td class="col-sm-1 col-md-1 text-center"><strong>{{ item.total_price }} р.</strong></td>
 
                             <td class="col-sm-1 col-md-1">
-                                <a href="{% url 'cart_remove' item.product.id %}" class="btn btn-danger">
-                                    <i class="glyphicon glyphicon-remove" aria-hidden="true"></i> Удалить {{item.product.id }}
+                                <a href="{% url 'cart_remove' item.product.id %}" class="pdp__info">
+                                    <i class="glyphicon glyphicon-remove" aria-hidden="true"></i> Удалить
                                 </a>
                             </td>
                         </tr>
@@ -91,7 +91,7 @@
                 </tr>
                 </tbody>
             </table>
-        </div>
+        <!-- </div> -->
     </div>
 
 {% endblock %}

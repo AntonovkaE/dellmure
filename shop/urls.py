@@ -22,9 +22,9 @@ from django.contrib.flatpages import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('lookbook/', include('lookbook.urls')),
     path('cart/', include('cart.urls')),
     path('orders/', include('orders.urls')),
-    # path('lookbook/', include('lookbook.urls')),
     path('about/', include('django.contrib.flatpages.urls')),
     path('', include('my_shop.urls')),
 

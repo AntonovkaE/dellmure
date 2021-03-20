@@ -26,8 +26,8 @@ class Product(models.Model):
     slug = models.SlugField(
         unique=True,
     )
-    price = models.FloatField(null=True, blank=True)
-    price_with_sale = models.FloatField(null=True, blank=True)
+    price = models.IntegerField(null=True, blank=True)
+    price_with_sale = models.IntegerField(null=True, blank=True)
     composition = models.TextField(max_length=400, null=True, blank=True)
     discription = models.TextField()
     image = models.ImageField(upload_to='images/')

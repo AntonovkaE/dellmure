@@ -7,18 +7,14 @@ from .forms import CartAddProductForm
 
 
 @require_POST
-def cart_add(request, size_id):
+def cart_add(request):
+    size_id = request.POST.get('size')
     product = get_object_or_404(Size, id=size_id)
     cart = Cart(request)
-    form = CartAddProductForm(request.POST)
-    if form.is_valid():
-        cd = form.cleaned_data
-        cart.add(product=product,
-                 quantity=cd['quantity'],
-                 update_quantity=cd['update'])
+    cart.add(product=product,
+            quantity=1,
+            update_quantity=False)
     return redirect('cart_detail')
-
-
 
 def cart_remove(request, size_id):
     cart = Cart(request)

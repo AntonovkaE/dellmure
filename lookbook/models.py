@@ -5,7 +5,5 @@ class Collection(models.Model):
 
 class Slide_of_collection(models.Model):
     image = models.ImageField(upload_to='images/lookbook',  blank=True)
-    image2 = models.ImageField(upload_to='images/lookbook',  blank=True)
     collection = models.ManyToManyField(Collection)
     description = models.TextField(max_length=300)
-    description2 = models.TextField(max_length=300)

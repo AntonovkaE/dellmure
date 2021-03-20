@@ -20,8 +20,13 @@ body, html {
     
     
 }
+h1 {
+    text-align: center;
+    margin: auto;
+}
 p {
-    font-size: 16px;
+    font-size: 1.1 rem;
+    text-align: justify;
 }
 h3 {
     font-size: calc(1rem + .2vw);}
@@ -52,6 +57,7 @@ li {
 
 a {
     text-decoration: none;
+    color: black;
 }
 
 li {
@@ -134,10 +140,11 @@ li {
 
 .flex-container {
     display: flex;
+    display: -webkit-flex; 
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;;
     align-items: baseline;
+    justify-content: center;
 }
 .plp__item>a {
     display: block;
@@ -181,26 +188,39 @@ padding-top: 155%}
     }}
 
 
-
+/* средний экран */
 @media screen and (max-width: 1024px) and (min-width: 701px) {
 .pdp__media {
     position: relative;
     height: 1000px;
     height: calc(100vh - 132px);
 }
-.carousel-item {
-    background-color: lightgrey;
+.pdp__info {
+    padding-right: 2% ;
+    width: 50%;
+    text-align: center;
+    margin: auto;
+    padding-bottom: 5%;
 }
-
+.carousel-inner {
+    background-color: rgb(201, 201, 201);
+}
+.carousel-item {
+    background-color: rgb(240, 240, 240);
+}
+.w-100 {
+    padding: 0 13%;
+}
 .small_img{
     display: none;
 }
 
 .pdp__info p, .pdp__info div {
-    padding-bottom: 5%;
+    padding-bottom: 1%;
+    text-align: center;
 }}
 
-
+/* Большой экран */
 @media screen and (min-width: 1025px){
 .pdp__media {
     height: 100%;
@@ -211,7 +231,8 @@ padding-top: 155%}
 }
 .pdp__info {
     justify-content: flex-end;
-    box-sizing: border-box}
+    box-sizing: border-box;
+    padding-right: 3% ;}
 
 .pdp__info p, .pdp__info div {
         padding-bottom: 5%;
@@ -284,7 +305,7 @@ padding-top: 155%}
  
 /* Checked */
 .form_radio_btn input[type=radio]:checked + label {
-	background: #ffe0a6;
+	background: #979797;
 }
  
 /* Hover */
@@ -294,7 +315,7 @@ padding-top: 155%}
  
 /* Disabled */
 .form_radio_btn input[type=radio]:disabled + label {
-	background: #efefef;
+	background: #ffffff;
 	color: #666;
 }
 
@@ -320,4 +341,51 @@ padding-top: 155%}
     background-color: black;
     color: white;
     border: none;
+    width: 90%;
+}
+
+
+.black_button:hover {
+    background-color: white;
+    color: black;
+
+}
+
+
+/* Lookbook */
+
+/* small */
+
+
+/* medium */
+
+/* big */
+@media screen and (min-width: 1024px)
+{
+.slide {
+    width: 16.66667%;
+    padding-bottom: 30px;
+}
+.slide img {
+    width: 100%;
+}
+.slide:nth-child(odd) {
+    padding-left: 55px;
+    padding-right: 5px;
+}
+
+.slide:nth-child(2n) {
+    padding-right: 55px;
+    padding-left: 5px;
+}
+.slide_detail{
+    width: 70%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.slide_detail{
+    width: 80%;
+    margin: auto;
+}
 }

@@ -10,20 +10,11 @@
 
   <div class="box sort pull-right">
     <span>Сортировка:</span>
-    <button value="Сортировка" class="dropdown-toggle" type="submit" data-toggle="dropdown" id="menu2">
-     <span class="dropdown-label">По умолчанию</span>
-    </button>
-   <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
-      <li><input type="submit" name="orderby" value="created"></li>
-      <li><input type="submit" name="orderby" value="-created"></li>
-      <li><input type="submit" name="orderby" value="price"></li>
-      <li><input type="submit" name="orderby" value="-price"></li>
-   </ul>
+    <button type="submit" name="orderby" value="created"> <span> По новизне</span></button>
+    <button type="submit" name="orderby" value="price"> <span> Цена по возрастанию</span></button>
+    <button type="submit" name="orderby" value="-price"> <span> Цена по убыванию</span></button>
   </div>
 </form>
-{% for category in categories %}
-<p> {{category.name }} </p>
-{% endfor %}
 
 <div class="plp_all flex-container">
   {% for product in object_list %}

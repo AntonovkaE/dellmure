@@ -6,8 +6,13 @@
 {% endblock %}
 
 {% block content %}
-{% for item in object_list%}
-{{item.image}}
-{{item.image2}}
+
+    <div class="box sort pull-right">
+      {% for item in object_list%}
+      <a href="{% url 'lookbook' item.id %}"> <span>{{ item.name }} {{item.id}}</span></a>
+      {% endfor %}
+    </div>
+
+
 
 {% endblock %}

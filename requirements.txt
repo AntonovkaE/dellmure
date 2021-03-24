@@ -1,8 +1,6 @@
 arabic-reshaper==2.1.1
 asgiref==3.3.1
-beautifulsoup4==4.9.3
 bleach==3.3.0
-Cartridge==0.13.0
 certifi==2020.12.5
 chardet==4.0.0
 dj-database-url==0.5.0
@@ -20,6 +18,7 @@ packaging==20.9
 pi==0.1.2
 Pillow==8.1.0
 pipreqs==0.4.10
+psycopg2-binary==2.8.6
 pyparsing==2.4.7
 PyPDF2==1.26.0
 python-bidi==0.4.2
